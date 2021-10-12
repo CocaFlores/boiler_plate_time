@@ -1,0 +1,68 @@
+def add_time(start, duration, day=None):
+    new_time=""
+    
+    
+    
+    #begin by taking the start time and splitting it into hours and minutes
+    timestart=len(start)
+    timestart=start.split(':')
+    minutesstart=timestart[1]
+    minutesstart=minutesstart.split(' ')    
+    
+    #variables for the start time defined:
+    hours_start=timestart[0]
+    minutes_start=minutesstart[0]
+    timeoftheday_start= minutesstart[1]
+
+    #durationtime
+    timeduration=len(duration)
+    timeduration=duration.split(':')
+    minutes_duration=timeduration[1]
+    
+    #variables for the duration time:
+    hours_duration=timeduration[0]
+    minutes_duration=timeduration[1]
+    
+    #sum of the times:
+    total_minutes= int(minutes_start) + int(minutes_duration)
+    total_hours= int(hours_start) + int(hours_duration)
+    
+    #defining definitive variables, which must be sum
+    time=(total_hours*60)+(total_minutes)
+    minutes=total_minutes%60
+    hours=time//60
+    
+    #determine the day
+    hour=hours%24
+    days=int(hours/24)
+    
+    #hacer un diccionario con numeros y dias 
+    
+    if day != None:
+        options_day = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        pos = 0
+        while True:
+            if day in options_day:
+                return True
+            if day.lower() == day[pos].lower():
+                break
+            pos=pos+1
+        newday=options_day[((pos+(days%7))%7)]        
+
+        
+    #determine whether its am or pm
+    if hours//12 == 0:
+        timeoftheday = 'AM'
+    else:
+        timeoftheday = 'PM'    
+        
+    new_time='{:02d}'.format(hours) + ':' + '{:02d}'.format(minutes) + '' + timeoftheday + ',' + '' + newday
+
+    
+    
+    
+    
+    print(total_minutes)
+    print(hours)
+
+    return new_time
